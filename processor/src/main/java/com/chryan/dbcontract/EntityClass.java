@@ -67,11 +67,11 @@ class EntityClass {
             StoredInDatabase stored = element.getAnnotation(StoredInDatabase.class);
 
             if (stored != null && !StringUtils.isEmpty(stored.columnName())) {
-                names.put(StringUtils.getColumnFieldName(stored.columnName()), stored.columnName());
+                names.put(StringUtils.getColumnFieldName(simpleName), stored.columnName());
             } else if (stored != null && element.getKind() == ElementKind.METHOD) {
                 String n = StringUtils.isEmpty(stored.columnName()) ? simpleName : stored.columnName();
 
-                names.put(StringUtils.getColumnFieldNameFromMethodName(n), StringUtils.getColumnNameFromMethodName(n));
+                names.put(StringUtils.getColumnFieldNameFromMethodName(simpleName), StringUtils.getColumnNameFromMethodName(n));
             } else if (element.getKind() == ElementKind.FIELD && !element.getModifiers().contains(Modifier.STATIC)) {
                 names.put(StringUtils.getColumnFieldName(simpleName), StringUtils.getColumnName(simpleName));
             }
