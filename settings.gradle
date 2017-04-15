@@ -1,0 +1,4 @@
+rootProject.name = 'dbcontract'
+include 'annotations'
+include 'processor'
+
