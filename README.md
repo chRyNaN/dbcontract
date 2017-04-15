@@ -4,6 +4,7 @@ Auto generates column names for entities
 Annotate your model object with `@Entity` and an interface will be automatically generated for your model to implement. The inteface provides a static inner class with static final String fields representing the column names for the fields in the database.
 
 ```java
+@Entity
 public class User implements UserDbContract {
 
     private long id;
@@ -21,7 +22,8 @@ Generates:
 
 ```java
 public interface UserDbContract {
-
+    static final String TABLE_NAME = "User";
+    
     class Columns {
         static final String ID = "ID";
         static final String SOME_FIELD = "someOtherName";
@@ -38,6 +40,7 @@ User.Columns.ID
 The `@StoredInDatabase` and `@NotStoredInDatabase` annotations can be used on methods too, so, it can be used with AutoValue.
 
 ```java
+@Entity(tableName = "someOtherName")
 public class User implements UserDbContract {
     
     // Methods need to be annotated for column names to be generated
